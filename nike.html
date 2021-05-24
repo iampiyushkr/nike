@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            body{
+                display: flex;
+                flex-direction: row;
+            }
+            #div1{
+                display: flex;
+                flex-direction: column;
+                width: 25%;
+                margin: 20px;
+                flex-basis: 200px;
+                
+                
+            }
+            #div1 input{
+                
+                margin: 10px;
+            }
+            
+            #div2{
+                width: 75%;
+                display: flex;
+                margin: 20px;
+               flex-direction: row;
+               flex-wrap: wrap;
+            }
+            #div2 div{
+                width: 200px;
+                height: 250px;
+                
+                margin: 20px;
+                border-style: ridge;
+            }
+            #div2 button{
+                margin-left: 30px;
+                margin-top: 50px;
+            }
+            #div2 p{
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="div1">
+            <input id="input1" type="text" placeholder="Name"/>
+            <input id="input2" type="text" placeholder="Price"/>
+            <input id="input3" type="text" placeholder="category"/>
+            <input id="input4" type="number" placeholder="Estimate delivery days"/>
+            <button id="btn1">Add Product</button>
+        </div>
+        <div id="div2">
+
+        </div>
+    </body>
+</html>
+<script>
+    var info={};
+    info.Name=document.getElementById("input1").value
+     info.Price = document.getElementById("input2").value
+      info.Category = document.getElementById("input3").value
+       info.Estimated_delivery_date = document.getElementById("input4").value
+
+      
+    function btn1(){
+        var innerDiv=document.createElement("div");
+        innerDiv.innerHTML='<p id="para"></p><p id="para1"></p><p id="para2"></p><p id="para3"></p><button onclick="update();" id="update">Update</button><button onclick="removee();" id="remove">Remove</button>'
+        
+        document.getElementById("div2").appendChild(innerDiv)
+        document.getElementById("para").innerHTML = document.getElementById("input1").value
+        document.getElementById("para1").innerHTML = document.getElementById("input2").value
+        document.getElementById("para2").innerHTML = document.getElementById("input3").value
+        document.getElementById("para3").innerHTML = document.getElementById("input4").value
+
+    }
+    document.getElementById("btn1").addEventListener("click",btn1)
+    function removee(e){
+        
+       e.target.parentNode.remove()
+        
+    }
+    function update(){
+        var new_price = prompt('Enter Price')
+         document.getElementById("para1").innerHTML= new_price
+    }
+    
+
+</script>
