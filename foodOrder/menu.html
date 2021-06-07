@@ -40,7 +40,7 @@
 
 <body>
     <div id="topDiv">
-        <button id="menu">Menu</button>
+        <button onclick="menu()" id="menu">Menu</button>
         <button id="login">Login</button>
         <button id="signup">Signup</button>
     </div>
@@ -72,50 +72,76 @@
     ]
 
     localStorage.setItem("Dish",JSON.stringify(dish))
-        let product=JSON.parse(localStorage.getItem('Dish'))
-    product.forEach(function(el){
-        var div = document.createElement("div")
 
-        var p = document.createElement("p")
-        p.innerHTML = "Name: " + el.Name
-        var p1 = document.createElement("p")
-        p1.innerHTML = "Price: " + el.Price
-        var p2 = document.createElement("p")
-        p2.innerHTML = "Time to prepare: " + el.TimeToPrepare
-        var image = document.createElement("img")
-        image.src = el.Image
-        var btn = document.createElement("button")
-        btn.innerHTML = "Add to cart"
-
-        div.append(p, p1, p1, image, btn)
-        document.getElementById("menuDiv").append(div)
-        btn.onclick = function (el) {
-            var count = 0;
+    function menu() {
+            var i = 0;
+            var product = JSON.parse(localStorage.getItem('Dish'))
             
 
+            product.forEach(function (el) {
+                var div = document.createElement("div")
+                div.style.backgroundColor = "lightYellow"
+                div.style.textAlign = "center"
+                var p_name = document.createElement("p");
+
+                p_name.innerHTML = `Name: ${el.Name}`
+
+                var p_price = document.createElement("p");
+
+                p_price.innerHTML = `Price: ${el.Price}`
+
+                var img = document.createElement("img");
+
+                img.src = el.Image
+
+                var btn3 = document.createElement("button")
+
+                btn3.innerHTML = 'Add to cart'
+                btn3.setAttribute("class", "btn3")
+
+                div.append(p_name, p_price, img, btn3)
+
+                document.getElementById("menuDiv").appendChild(div)
+
+                btn3.onclick = function () {
+                    addFav(el)
+                }
+
+            });
+
+
+
+        }
+
+
+
+        
+
+        function addFav(el) {
+            var count = 0;
             let arr;
-            arr = JSON.parse(localStorage.getItem("cart1"))
+            arr = localStorage.getItem('cart')
             if (arr == null) {
-                arr = []
+                arr = [];
                 arr.push(el)
-                localStorage.setItem('cart1', JSON.stringify(arr))
+                localStorage.setItem('cart', JSON.stringify(arr))
             } else {
-                arr = JSON.parse(localStorage.getItem('cart1'))
-                for (let i = 0; i < arr.length; i++) {
-                    if (el.Name == arr[i].Name && el.Price == arr[i].Price && el.TimeToPrepare == arr[i].TimeToPrepare && el.Image == arr[i].Image) {
-                        alert("Already Added")
+                arr = JSON.parse(localStorage.getItem('cart'))
+for (let i = 0; i < arr.length; i++) {
+if (el.Name == arr[i].Name && el.Price == arr[i].Price && el.Image == arr[i].Image) {
+                        alert("Already added")
                         break;
                     }
                     count++;
                 }
                 if (count == arr.length) {
                     arr.push(el)
-                    localStorage.setItem('cart1', JSON.stringify(arr))
+                    localStorage.setItem('cart', JSON.stringify(arr))
                 }
             }
 
+
         }
-    })
 
     function submit(){
         document.getElementById("menuDiv").innerHTML=null;

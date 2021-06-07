@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        #topDiv {
+            width: 95%;
+            height: 100px;
+            margin: auto;
+            border-style: ridge;
+            border-color: orangered;
+            text-align: right;
+            border-width: 30px;
+        }
+
+        #topDiv button {
+            margin-right: 20px;
+            margin-top: 20px;
+            height: 50px;
+            width: 80px;
+            background-color: orangered;
+        }
+        #secondDiv{
+            display: grid;
+            grid-gap: 20px;
+            width: 600px;
+            grid-template-columns: repeat(3,200px);
+            grid-template-rows: repeat(1,400px);
+            margin: auto;
+        }
+        #seconddiv{
+            width: 100%;
+            height: 100px;
+        }
+        
+    </style>
+</head>
+
+<body>
+    <div id="topDiv">
+        <button onclick="menu()" id="menu">Menu</button>
+        <button onclick="login()" id="login">Login</button>
+        <button onclick="signup()" id="signup">Signup</button>
+        <button onclick="cart()">Cart</button>
+    </div>
+    <div id="secondDiv"></div>
+</body>
+
+</html>
+<script>
+   
+        let arr = JSON.parse(localStorage.getItem('cart'))
+       
+        document.getElementById("secondDiv").innerHTML = null
+        
+        var btn=document.createElement("button")
+        btn.innerHTML='Submit'
+        btn.setAttribute("class","btn")
+         document.getElementById("secondDiv").appendChild(btn)
+         document.querySelector(".btn").addEventListener("click",submit)
+
+        for (let i = 0; i < arr.length; i++) {
+            let div = document.createElement("div")
+
+
+            let p = document.createElement('p')
+            p.innerHTML = 'Name: ' + arr[i].Name
+
+            let p1 = document.createElement('p')
+            p1.innerHTML = 'Price: ' + arr[i].Price
+
+            let image = document.createElement("img")
+            image.src = arr[i].Image
+
+            div.append(p, p1, image)
+            document.getElementById("secondDiv").appendChild(div)
+
+            
+        }
+    
+
+     function submit() {
+            document.getElementById("secondDiv").innerHTML = null;
+            let arr = ["your order is accepted", "Your order is being cooked", "your order is being ready", "Order out for delivery", "order delivered"]
+            setInterval(function () {
+                var i=0;
+                if (i == arr.length) {
+                    i = 0;
+                }
+                alert(arr[i])
+                i++;
+            }, 3000)
+        }
+</script>
