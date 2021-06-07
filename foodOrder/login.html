@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        #topDiv {
+            width: 95%;
+            height: 100px;
+            margin: auto;
+            border-style: ridge;
+            border-color: orangered;
+            text-align: right;
+            border-width: 30px;
+        }
+
+        #topDiv button {
+            margin-right: 20px;
+            margin-top: 20px;
+            height: 50px;
+            width: 80px;
+            background-color: orangered;
+        }
+         #loginDiv{
+            width: 200px;
+            margin: auto;
+            display:grid;
+            grid-gap:10px;
+            margin-top: 100px;
+        }
+        #submit{
+            background-color: orangered;
+            border-radius: 20px;
+            height: 40px;
+        }
+        #loginDiv input{
+            background-color: black;
+            color: orangered;
+            height: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="topDiv">
+        <button id="menu">Menu</button>
+        <button id="login">Login</button>
+        <button onclick="signup()" id="signup">Signup</button>
+    </div>
+    <div id="loginDiv" >
+       <input id="name" type="text" placeholder="Email"/>
+       <input id="password" type="password" placeholder="Password"/>
+       <button onclick="login()" id="submit">Login</button>
+    </div>
+</body>
+
+</html>
+<script>
+    function login(){
+        let count=0;
+        let temp=0;
+        var email=document.getElementById("name").value
+        var contact_No=document.getElementById("password").value
+
+        let usersDetail={
+            Email:email,
+            Contact_No:contact_No,
+        }
+
+        let arr5=JSON.parse(localStorage.getItem('usersDetail'))
+
+        for(var x=0;x<arr5.length;x++){
+            if(arr5[x].Email==usersDetail.Email&&arr5[x].Contact_No==usersDetail.Contact_No){
+                location.replace("")
+            }
+            if(arr5[x].Email!=usersDetail.Email){
+                count++;
+            }
+            if(arr5[x].Contact_No!=usersDetail.Contact_No){
+                temp++
+            }
+
+
+        }
+        if(count==arr5.length){
+            alert("Invalid Email")
+        }else{
+            if (temp == arr5.length) {
+                alert("Invalid Conact_No")
+            }
+        }
+
+
+}
+
+function signup(){
+    location.replace("C:\Users\DELL\Desktop\practice\foodOrder\signup.html")
+}
+</script>

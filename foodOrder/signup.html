@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        #topDiv {
+            width: 95%;
+            height: 100px;
+            margin: auto;
+            border-style: ridge;
+            border-color: orangered;
+            text-align: right;
+            border-width: 30px;
+        }
+
+        #topDiv button {
+            margin-right: 20px;
+            margin-top: 20px;
+            height: 50px;
+            width: 80px;
+            background-color: orangered;
+        }
+        #signupDiv{
+            width: 200px;
+            margin: auto;
+            display:grid;
+            grid-gap:10px;
+            margin-top: 100px;
+        }
+        #submit{
+            background-color: orangered;
+            border-radius: 20px;
+            height: 40px;
+        }
+        #signupDiv input{
+            background-color: black;
+            color: orangered;
+            height: 30px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div id="topDiv">
+        <button id="menu">Menu</button>
+        <button onclick="login()" id="login">Login</button>
+        <button id="signup">Signup</button>
+    </div>
+    <div id="signupDiv">
+        <input type="text" id="name" placeholder="Name"/>
+        <input type="text" id="email" placeholder="Email"/>
+        <input type="text" id="contact_no" placeholder="Contact_No"/>
+        <button onclick="submit()" id="submit">Submit</button>
+    </div>
+</body>
+
+</html>
+<script>
+    function submit(){
+        var name=document.getElementById("name").value
+        var email=document.getElementById("email").value
+        var contact_no=document.getElementById("contact_no").value
+        let usersDetail={
+            Name:name,
+            Email:email,
+            Contact_no:contact_no,
+        }
+        var count=0;
+        let arr;
+        arr=JSON.parse(localStorage.getItem('usersDetail'))
+        if(arr==null){
+            arr=[];
+            arr.push(usersDetail)
+            localStorage.setItem('usersDetail',JSON.stringify(arr))
+            alert("Submitted")
+        }else{
+            for(i=0;i<arr.length;i++){
+                if(arr[i].Name==usersDetail.Name){
+                    alert("UserName Already Register")
+                    break;
+                }
+                if(arr[i].Email==usersDetail.Email){
+                    alert("Email Already Register")
+                    break;
+                }
+                 if (arr[i].Contact_no == usersDetail.Contact_no) {
+                    alert("Contact_No Already Register")
+                    break;
+                }
+                count++;
+            }
+            if(count==arr.length){
+                arr.push(usersDetail)
+                localStorage.setItem('usersDetail', JSON.stringify(arr))
+                alert("Submitted")
+            }
+        }
+    }
+
+    function login() {
+            location.replace("C:\Users\DELL\Desktop\practice\foodOrder\login.html")
+        }
+</script>

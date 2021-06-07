@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            #topDiv{
+                width: 95%;
+                height: 100px;
+                margin: auto;
+                border-style: ridge;
+                border-color: orangered;
+                text-align: right;
+                border-width: 30px;
+            }
+            #topDiv button{
+                margin-right: 20px;
+                margin-top: 20px;
+                height: 50px;
+                width: 80px;
+                background-color: orangered;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="topDiv">
+            <button onclick="menu()" id="menu">Menu</button>
+            <button onclick="login()" id="login">Login</button>
+            <button onclick="signup()" id="signup">Signup</button>
+        </div>
+    </body>
+</html>
+<script>
+    function menu(){
+        location.replace("file:///C:/Users/DELL/Desktop/practice/foodOrder/menu.html")
+    }
+    function login(){
+        location.replace("C:\Users\DELL\Desktop\practice\foodOrder\login.html")
+    }
+    function signup(){
+        location.replace("C:\Users\DELL\Desktop\practice\foodOrder\signup.html")
+    }
+</script>
